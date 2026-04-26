@@ -120,9 +120,7 @@ import { MapPin, Clock, ArrowLeftRight, ArrowRight, MessageCircle } from "@lucid
   <div class="mt-6 md:mt-8 text-center px-4">
     <p class="inline-flex items-center gap-2 text-sm text-slate-500">
       <MessageCircle size={14} strokeWidth={2} class="flex-shrink-0" />
-      <span
-        >Wir öffnen WhatsApp für die Bestellung · Antwort innert wenigen Minuten</span
-      >
+      <span>Sofortpreis · Bestätigung via WhatsApp innert wenigen Minuten</span>
     </p>
   </div>
 </div>
@@ -184,24 +182,8 @@ import { MapPin, Clock, ArrowLeftRight, ArrowRight, MessageCircle } from "@lucid
           }
         }
 
-        const message =
-          "Hallo Taxi-Maxi 👋\n\n" +
-          "Ich möchte eine Fahrt buchen:\n\n" +
-          "📍 Von: " +
-          from +
-          "\n" +
-          "📍 Nach: " +
-          to +
-          "\n" +
-          "🕐 Wann: " +
-          when +
-          "\n\n" +
-          "Vielen Dank!";
-
-        const phone = "41441234567";
-        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-
-        window.open(url, "_blank");
+        const params = new URLSearchParams({ from: from, to: to, when: when });
+        window.location.href = "/buchen?" + params.toString();
       });
     }
   })();
