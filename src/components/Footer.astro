@@ -77,12 +77,32 @@ const cols = [
         ))
       }
     </div>
-    <div
-      class="mt-14 pt-8 border-t border-slate-200 text-xs text-slate-500 text-center flex items-center justify-center flex-wrap gap-1"
-    >
-      <span>© 2026 Taxi Shiar GmbH · Konzessioniert in Zürich · Made with</span>
-      <Heart size={14} fill="currentColor" class="inline text-accent" />
-      <span>in Zürich</span>
+    <div class="mt-14 pt-6 border-t border-slate-200">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-slate-500 text-center sm:text-left">
+          © 2026 Taxi Shiar GmbH · Konzessioniert in Zürich
+        </p>
+        <a
+          href="https://www.smartbranding.ch/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="powered-by-link inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors group"
+        >
+          <span>Made with</span>
+          <Heart
+            size={14}
+            fill="currentColor"
+            class="text-red-500 group-hover:scale-110 transition-transform"
+          />
+          <span>by</span>
+          <img
+            src="/images/smartbranding-logo-blue.svg"
+            alt="Smart Branding"
+            class="h-5 w-auto object-contain"
+            loading="lazy"
+          />
+        </a>
+      </div>
     </div>
   </div>
 </footer>
@@ -150,6 +170,20 @@ const cols = [
   @media (prefers-reduced-motion: reduce) {
     .race-stripe {
       animation: none;
+    }
+  }
+
+  .powered-by-link img {
+    filter: grayscale(20%);
+    transition: filter 250ms ease;
+  }
+  .powered-by-link:hover img {
+    filter: grayscale(0%);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .powered-by-link img,
+    .powered-by-link svg {
+      transition: none !important;
     }
   }
 </style>
