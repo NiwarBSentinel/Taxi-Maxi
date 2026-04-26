@@ -132,22 +132,6 @@ const items = [
         />
 
         <div data-fleet-badge="0" class="fleet-badge fleet-badge-pos-0 z-20">
-          <svg
-            class="badge-connector"
-            viewBox="0 0 100 60"
-            preserveAspectRatio="none"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M 0 30 Q 30 30 60 50 L 100 50"
-              stroke="rgb(16 185 129)"
-              stroke-width="1.5"
-              stroke-dasharray="3 3"
-              stroke-linecap="round"></path>
-            <circle cx="100" cy="50" r="3" fill="rgb(16 185 129)"></circle>
-          </svg>
           <div
             class="bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
           >
@@ -177,22 +161,6 @@ const items = [
         </div>
 
         <div data-fleet-badge="1" class="fleet-badge fleet-badge-pos-1 z-20">
-          <svg
-            class="badge-connector"
-            viewBox="0 0 100 60"
-            preserveAspectRatio="none"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M 100 30 Q 70 30 40 30 L 0 30"
-              stroke="rgb(37 99 235)"
-              stroke-width="1.5"
-              stroke-dasharray="3 3"
-              stroke-linecap="round"></path>
-            <circle cx="0" cy="30" r="3" fill="rgb(37 99 235)"></circle>
-          </svg>
           <div
             class="bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
           >
@@ -217,22 +185,6 @@ const items = [
         </div>
 
         <div data-fleet-badge="2" class="fleet-badge fleet-badge-pos-2 z-20">
-          <svg
-            class="badge-connector"
-            viewBox="0 0 100 60"
-            preserveAspectRatio="none"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M 0 60 Q 30 30 60 10 L 100 0"
-              stroke="rgb(234 88 12)"
-              stroke-width="1.5"
-              stroke-dasharray="3 3"
-              stroke-linecap="round"></path>
-            <circle cx="0" cy="60" r="3" fill="rgb(234 88 12)"></circle>
-          </svg>
           <div
             class="bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
           >
@@ -413,52 +365,22 @@ const items = [
     pointer-events: auto;
   }
 
-  .badge-connector {
-    position: absolute;
-    width: 80px;
-    height: 50px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 500ms ease-out 200ms;
-  }
-  .fleet-badge.is-visible .badge-connector {
-    opacity: 0.6;
-  }
-
   .fleet-badge-pos-0 {
     top: 8%;
     left: 0%;
-  }
-  .fleet-badge-pos-0 .badge-connector {
-    right: -75px;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .fleet-badge-pos-1 {
     top: 38%;
     right: -3%;
   }
-  .fleet-badge-pos-1 .badge-connector {
-    left: -75px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 
   .fleet-badge-pos-2 {
     bottom: 5%;
     right: 5%;
   }
-  .fleet-badge-pos-2 .badge-connector {
-    left: -75px;
-    bottom: 50%;
-    transform: translateY(50%);
-  }
 
   @media (max-width: 1024px) {
-    .badge-connector {
-      display: none;
-    }
     .fleet-badge-pos-0,
     .fleet-badge-pos-1,
     .fleet-badge-pos-2 {
@@ -473,8 +395,7 @@ const items = [
     #fleet-accordion .fleet-item,
     #fleet-accordion .fleet-desc,
     #fleet-accordion .fleet-chevron,
-    .fleet-badge,
-    .badge-connector {
+    .fleet-badge {
       transition: none !important;
     }
   }
