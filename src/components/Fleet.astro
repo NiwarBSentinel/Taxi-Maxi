@@ -132,27 +132,80 @@ const items = [
         />
 
         <div
-          class="absolute top-4 right-4 lg:top-8 lg:right-0 z-20 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
+          class="absolute top-4 right-4 lg:top-8 lg:right-0 z-20 min-w-[200px] min-h-[72px]"
         >
           <div
-            class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0"
+            data-fleet-badge="0"
+            class="fleet-badge bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
           >
-            <Zap
-              size={20}
-              strokeWidth={2}
-              fill="currentColor"
-              class="text-emerald-600"
-            />
-          </div>
-          <div>
-            <p
-              class="text-xs uppercase tracking-wider text-emerald-700 font-semibold leading-tight"
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0"
             >
-              E-Hybrid
-            </p>
-            <p class="text-sm font-bold text-slate-900 leading-tight mt-0.5">
-              73% der Flotte
-            </p>
+              <Zap
+                size={20}
+                strokeWidth={2}
+                fill="currentColor"
+                class="text-emerald-600"
+              />
+            </div>
+            <div>
+              <p
+                class="text-xs uppercase tracking-wider text-emerald-700 font-semibold leading-tight"
+              >
+                E-Hybrid
+              </p>
+              <p
+                class="text-sm font-bold text-slate-900 leading-tight mt-0.5 whitespace-nowrap"
+              >
+                73% der Flotte
+              </p>
+            </div>
+          </div>
+
+          <div
+            data-fleet-badge="1"
+            class="fleet-badge bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0"
+            >
+              <VolumeX size={20} strokeWidth={2} class="text-blue-600" />
+            </div>
+            <div>
+              <p
+                class="text-xs uppercase tracking-wider text-blue-700 font-semibold leading-tight"
+              >
+                Flüsterleise
+              </p>
+              <p
+                class="text-sm font-bold text-slate-900 leading-tight mt-0.5 whitespace-nowrap"
+              >
+                weniger als 50 dB
+              </p>
+            </div>
+          </div>
+
+          <div
+            data-fleet-badge="2"
+            class="fleet-badge bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0"
+            >
+              <Sparkles size={20} strokeWidth={2} class="text-orange-600" />
+            </div>
+            <div>
+              <p
+                class="text-xs uppercase tracking-wider text-orange-700 font-semibold leading-tight"
+              >
+                Frisch gereinigt
+              </p>
+              <p
+                class="text-sm font-bold text-slate-900 leading-tight mt-0.5 whitespace-nowrap"
+              >
+                nach jeder Schicht
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -171,6 +224,7 @@ const items = [
 
     // Auto-Akkordeon
     const items = fleetSection.querySelectorAll("[data-fleet-item]");
+    const badges = fleetSection.querySelectorAll("[data-fleet-badge]");
     let activeIdx = 0;
     let interval = null;
     let isPaused = false;
@@ -181,6 +235,10 @@ const items = [
       items.forEach(function (item, i) {
         if (i === idx) item.classList.add("is-active");
         else item.classList.remove("is-active");
+      });
+      badges.forEach(function (badge, i) {
+        if (i === idx) badge.classList.add("is-visible");
+        else badge.classList.remove("is-visible");
       });
     }
 
@@ -291,10 +349,29 @@ const items = [
     color: rgb(16 185 129);
   }
 
+  .fleet-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    transition:
+      opacity 500ms ease-out,
+      transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .fleet-badge.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #fleet-accordion .fleet-item,
     #fleet-accordion .fleet-desc,
-    #fleet-accordion .fleet-chevron {
+    #fleet-accordion .fleet-chevron,
+    .fleet-badge {
       transition: none !important;
     }
   }
