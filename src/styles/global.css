@@ -49,9 +49,6 @@
     backdrop-filter 250ms ease;
 }
 #site-header .header-link,
-#site-header .header-logo,
-#site-header .logo-shiar,
-#site-header .logo-taxi,
 #site-header .hamburger-line {
   transition: color 250ms ease, background-color 250ms ease;
 }
@@ -67,12 +64,6 @@
 }
 #site-header.scrolled .header-link:hover {
   color: var(--color-primary);
-}
-#site-header.scrolled .logo-shiar {
-  color: var(--color-primary);
-}
-#site-header.scrolled .logo-taxi {
-  color: var(--color-accent-dark);
 }
 #site-header.scrolled .hamburger-line {
   background-color: var(--color-dark);

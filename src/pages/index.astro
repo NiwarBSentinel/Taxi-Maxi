@@ -9,36 +9,40 @@ import Fleet from "../components/Fleet.astro";
 import Contact from "../components/Contact.astro";
 
 const siteUrl = "https://taxi-maxi.vercel.app";
-const title = "Shiar TAXI · Ihr Taxi in Zürich · 24/7 · 079 646 60 87";
+const title = "Taxi Shiar · Ihr Taxi in Zürich · 24/7 · 079 646 60 87";
 const description =
-  "Persönlicher Taxi-Service in Zürich und Umgebung. 24/7 verfügbar. Standard-Taxi, Flughafen-Transfer, Geschäftskunden. Jetzt anrufen: 079 646 60 87.";
-const ogTitle = "Shiar TAXI · Ihr Taxi in Zürich · 24/7";
+  "Ihr Taxi im Limmattal und der ganzen Region Zürich. 24/7 verfügbar. Standard-Taxi, Flughafen-Transfer, Geschäftskunden. Jetzt anrufen: 079 646 60 87.";
+const ogTitle = "Taxi Shiar · Ihr Taxi in Zürich · 24/7";
 const ogDescription =
-  "Persönlicher Taxi-Service in Zürich. 24/7 verfügbar. Jetzt anrufen: 079 646 60 87.";
+  "Ihr Taxi im Limmattal & Region Zürich. 24/7 verfügbar. Jetzt anrufen: 079 646 60 87.";
 const twitterDescription = "Persönlicher Taxi-Service in Zürich. 24/7 verfügbar.";
 
 const ldJson = {
   "@context": "https://schema.org",
   "@type": "TaxiService",
-  name: "Shiar TAXI",
+  name: "Taxi Shiar",
   image: `${siteUrl}/og-image.jpg`,
   url: `${siteUrl}/`,
   telephone: "+41796466087",
-  email: "info@shiar-taxi.ch",
+  email: "info@taxi-shiar.ch",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Bahnhofstrasse 1",
-    addressLocality: "Zürich",
-    postalCode: "8001",
+    streetAddress: "Zürcherstrasse 161",
+    addressLocality: "Oberengstringen",
+    postalCode: "8102",
     addressRegion: "ZH",
     addressCountry: "CH",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 47.3769,
-    longitude: 8.5417,
+    latitude: 47.4097,
+    longitude: 8.4644,
   },
+  areaServed: [
+    { "@type": "City", name: "Zürich" },
+    { "@type": "AdministrativeArea", name: "Limmattal" },
+  ],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: [
@@ -53,7 +57,6 @@ const ldJson = {
     opens: "00:00",
     closes: "23:59",
   },
-  areaServed: { "@type": "City", name: "Zürich" },
   serviceType: ["Taxi", "Flughafen-Transfer", "Geschäftskunden-Service"],
   currenciesAccepted: "CHF",
   paymentAccepted: "Cash, Credit Card",
