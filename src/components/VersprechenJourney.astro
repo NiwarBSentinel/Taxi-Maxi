@@ -1,0 +1,381 @@
+---
+import { Star, Clock } from "@lucide/astro";
+
+const items = [
+  {
+    title: "Qualität",
+    desc:
+      "Konzessionierte Fahrer in modernen Fahrzeugen, persönlich und sorgfältig ausgewählt.",
+  },
+  {
+    title: "Persönlich",
+    desc:
+      "Lokal verwurzelt in Zürich. Wir sprechen direkt mit Ihnen — kein Callcenter, keine Warteschleifen.",
+  },
+  {
+    title: "Pünktlich",
+    desc:
+      "24/7, 365 Tage. Wenn wir 18:30 sagen, sind wir um 18:25 da.",
+  },
+  {
+    title: "Fair",
+    desc:
+      "Transparente Tarife nach offiziellem Zürcher Taxitarif. Keine Überraschungen, klare Beträge.",
+  },
+];
+---
+
+<section
+  id="versprechen-journey"
+  class="relative py-24 md:py-32 bg-white overflow-hidden"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal-up max-w-3xl mb-12">
+      <p class="text-primary text-sm font-semibold uppercase tracking-widest mb-3">
+        Vier Versprechen
+      </p>
+      <h2
+        class="text-slate-900 text-4xl md:text-5xl font-extrabold leading-tight mb-4"
+      >
+        Eine Fahrt durch Zürich.<br />
+        <span class="text-primary">Vier Werte, die zählen.</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <!-- Accordion -->
+      <div class="lg:col-span-4 space-y-1">
+        {
+          items.map((item, idx) => (
+            <button data-step={idx} type="button" class="journey-item w-full text-left py-5 pl-6 pr-4">
+              <h3 class="text-xl font-bold text-slate-900">{item.title}</h3>
+              <div class="journey-desc">
+                <div class="overflow-hidden">
+                  <p class="text-slate-600 leading-relaxed mt-2 text-base">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Illustration -->
+      <div
+        class="lg:col-span-8 relative aspect-[4/3] rounded-3xl bg-gradient-to-br from-blue-50 via-white to-orange-50/40 overflow-hidden border border-slate-100"
+      >
+        <svg
+          viewBox="0 0 800 600"
+          class="absolute inset-0 w-full h-full"
+          preserveAspectRatio="xMidYMid meet"
+          aria-hidden="true"
+        >
+          <!-- Zürichsee (Bogen unten) -->
+          <path
+            d="M 60 510 Q 400 470 740 510 L 740 600 L 60 600 Z"
+            fill="rgb(186 230 253)"
+            opacity="0.45"></path>
+          <path
+            d="M 80 500 Q 400 470 720 500"
+            fill="none"
+            stroke="rgb(125 211 252)"
+            stroke-width="1.5"
+            opacity="0.5"></path>
+
+          <!-- Hintergrund-Gridlines (sehr dezent) -->
+          <line x1="0" y1="200" x2="800" y2="200" stroke="rgb(241 245 249)" stroke-dasharray="2 6" stroke-width="1"></line>
+          <line x1="0" y1="350" x2="800" y2="350" stroke="rgb(241 245 249)" stroke-dasharray="2 6" stroke-width="1"></line>
+
+          <!-- Route -->
+          <path
+            id="taxi-route"
+            d="M 150 100 Q 280 200 400 130 T 620 100 Q 720 240 600 400 Q 400 500 200 420 Q 90 340 150 100 Z"
+            fill="none"
+            stroke="rgb(59 130 246)"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-dasharray="4 7"
+            opacity="0.55"></path>
+
+          <!-- Flughafen (top-left) -->
+          <g transform="translate(150, 100)">
+            <circle r="22" fill="white" stroke="rgb(203 213 225)" stroke-width="1.25"></circle>
+            <g transform="rotate(-30)">
+              <path
+                d="M -10 0 L 10 0 M -10 0 L -16 -3 L -16 3 Z M 0 -8 L 4 0 L 0 8 L -4 0 Z M 8 -2 L 14 -5 L 14 5 L 8 2 Z"
+                fill="rgb(148 163 184)"
+                stroke="rgb(100 116 139)"
+                stroke-width="0.8"
+                stroke-linejoin="round"></path>
+            </g>
+            <text x="0" y="38" text-anchor="middle" fill="rgb(148 163 184)" font-size="11" font-weight="600" font-family="Inter, sans-serif">Flughafen</text>
+          </g>
+
+          <!-- Hauptbahnhof (top-center) -->
+          <g transform="translate(400, 130)">
+            <rect x="-30" y="-12" width="60" height="6" fill="rgb(241 245 249)" stroke="rgb(148 163 184)" stroke-width="1.25"></rect>
+            <polygon points="-32,-12 0,-22 32,-12" fill="rgb(241 245 249)" stroke="rgb(148 163 184)" stroke-width="1.25"></polygon>
+            <rect x="-26" y="-6" width="52" height="20" fill="white" stroke="rgb(148 163 184)" stroke-width="1.25"></rect>
+            <line x1="-15" y1="-6" x2="-15" y2="14" stroke="rgb(203 213 225)" stroke-width="1"></line>
+            <line x1="0" y1="-6" x2="0" y2="14" stroke="rgb(203 213 225)" stroke-width="1"></line>
+            <line x1="15" y1="-6" x2="15" y2="14" stroke="rgb(203 213 225)" stroke-width="1"></line>
+            <text x="0" y="32" text-anchor="middle" fill="rgb(148 163 184)" font-size="11" font-weight="600" font-family="Inter, sans-serif">Hauptbahnhof</text>
+          </g>
+
+          <!-- Grossmünster (top-right) -->
+          <g transform="translate(620, 100)">
+            <rect x="-16" y="-30" width="11" height="40" fill="white" stroke="rgb(148 163 184)" stroke-width="1.25"></rect>
+            <rect x="5" y="-30" width="11" height="40" fill="white" stroke="rgb(148 163 184)" stroke-width="1.25"></rect>
+            <polygon points="-16,-30 -10.5,-37 -5,-30" fill="rgb(241 245 249)" stroke="rgb(148 163 184)" stroke-width="1.25"></polygon>
+            <polygon points="5,-30 10.5,-37 16,-30" fill="rgb(241 245 249)" stroke="rgb(148 163 184)" stroke-width="1.25"></polygon>
+            <circle cx="-10.5" cy="-15" r="2" fill="rgb(203 213 225)"></circle>
+            <circle cx="10.5" cy="-15" r="2" fill="rgb(203 213 225)"></circle>
+            <text x="0" y="28" text-anchor="middle" fill="rgb(148 163 184)" font-size="11" font-weight="600" font-family="Inter, sans-serif">Grossmünster</text>
+          </g>
+
+          <!-- See-Label -->
+          <text x="400" y="555" text-anchor="middle" fill="rgb(125 211 252)" font-size="11" font-weight="600" font-family="Inter, sans-serif" opacity="0.85">Zürichsee</text>
+
+          <!-- Taxi -->
+          <g class="taxi-on-path">
+            <rect
+              x="-10"
+              y="-18"
+              width="20"
+              height="36"
+              rx="5"
+              fill="rgb(245 158 11)"
+              stroke="rgb(180 83 9)"
+              stroke-width="1.25"></rect>
+            <rect
+              x="-7"
+              y="-13"
+              width="14"
+              height="8"
+              rx="2"
+              fill="rgb(254 243 199)"
+              opacity="0.85"></rect>
+            <rect
+              x="-7"
+              y="5"
+              width="14"
+              height="8"
+              rx="2"
+              fill="rgb(254 243 199)"
+              opacity="0.85"></rect>
+            <circle cx="0" cy="0" r="1.5" fill="rgb(180 83 9)"></circle>
+            <animateMotion dur="16s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#taxi-route"></mpath>
+            </animateMotion>
+          </g>
+        </svg>
+
+        <!-- Overlay 0: Qualität (Sternchen-Rating) -->
+        <div
+          class="journey-overlay is-visible"
+          data-overlay="0"
+          style="top: 8%; right: 8%;"
+        >
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 px-4 py-2.5">
+            <div class="flex items-center gap-2">
+              <Star size={18} strokeWidth={1.5} fill="currentColor" class="text-orange-500" />
+              <span class="text-lg font-bold text-slate-900">4.9</span>
+              <span class="text-sm text-slate-500">/ 5</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">Konzessionierte Fahrer</p>
+          </div>
+        </div>
+
+        <!-- Overlay 1: Persönlich (Sprechblase) -->
+        <div
+          class="journey-overlay"
+          data-overlay="1"
+          style="top: 38%; right: 6%;"
+        >
+          <div
+            class="bg-white rounded-xl shadow-lg border border-slate-200 px-4 py-3 relative max-w-[220px]"
+          >
+            <p class="text-base font-semibold text-slate-900">Grüezi! 👋</p>
+            <p class="text-xs text-slate-500 mt-0.5 leading-snug">
+              Wir sprechen direkt mit Ihnen.
+            </p>
+            <span
+              class="absolute -bottom-1.5 left-5 w-3 h-3 bg-white border-r border-b border-slate-200 rotate-45"
+            ></span>
+          </div>
+        </div>
+
+        <!-- Overlay 2: Pünktlich (Clock + Time) -->
+        <div
+          class="journey-overlay"
+          data-overlay="2"
+          style="top: 12%; left: 8%;"
+        >
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 px-4 py-2.5">
+            <div class="flex items-center gap-2.5">
+              <span class="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-50">
+                <Clock size={18} strokeWidth={2} class="text-emerald-600" />
+              </span>
+              <div>
+                <p class="text-sm font-bold text-slate-900 leading-tight">5 Min früher</p>
+                <p class="text-xs text-slate-500 leading-tight">als versprochen</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overlay 3: Fair (Quittungs-Mockup) -->
+        <div
+          class="journey-overlay"
+          data-overlay="3"
+          style="bottom: 10%; right: 10%;"
+        >
+          <div
+            class="bg-white rounded-xl shadow-lg border border-slate-200 p-4 font-mono text-xs space-y-1.5 min-w-[170px]"
+          >
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-sans font-semibold mb-1">
+              Quittung
+            </p>
+            <div class="flex justify-between text-slate-600">
+              <span>Grundtaxe</span><span>CHF 6.00</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Strecke 8 km</span><span>CHF 31.20</span>
+            </div>
+            <div class="border-t border-slate-200 pt-1.5 flex justify-between font-bold text-slate-900">
+              <span>Total</span><span>CHF 37.20</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const section = document.getElementById("versprechen-journey");
+    if (!section) return;
+
+    const items = section.querySelectorAll(".journey-item");
+    const overlays = section.querySelectorAll(".journey-overlay");
+    let activeIndex = 0;
+    let interval = null;
+    let isPaused = false;
+    let resumeTimer = null;
+
+    function setActive(index) {
+      activeIndex = index;
+      items.forEach(function (item, i) {
+        if (i === index) item.classList.add("is-active");
+        else item.classList.remove("is-active");
+      });
+      overlays.forEach(function (ov, i) {
+        if (i === index) ov.classList.add("is-visible");
+        else ov.classList.remove("is-visible");
+      });
+    }
+
+    function startRotation() {
+      if (interval) return;
+      interval = setInterval(function () {
+        if (isPaused) return;
+        setActive((activeIndex + 1) % items.length);
+      }, 4000);
+    }
+
+    setActive(0);
+
+    items.forEach(function (item, i) {
+      item.addEventListener("click", function () {
+        setActive(i);
+        isPaused = true;
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(function () {
+          isPaused = false;
+        }, 8000);
+      });
+    });
+
+    section.addEventListener("mouseenter", function () {
+      isPaused = true;
+    });
+    section.addEventListener("mouseleave", function () {
+      if (!resumeTimer) isPaused = false;
+    });
+
+    const visibilityObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) startRotation();
+        });
+      },
+      { threshold: 0.3 }
+    );
+    visibilityObserver.observe(section);
+  })();
+</script>
+
+<style is:global>
+  #versprechen-journey .journey-item {
+    cursor: pointer;
+    border-left: 2px solid rgb(226 232 240);
+    background-color: transparent;
+    transition:
+      border-left-color 400ms ease,
+      border-left-width 400ms ease,
+      padding-left 400ms ease,
+      background-color 400ms ease;
+  }
+  #versprechen-journey .journey-item:not(.is-active):hover {
+    border-left-color: rgb(203 213 225);
+  }
+  #versprechen-journey .journey-item.is-active {
+    border-left-width: 4px;
+    border-left-color: rgb(245 158 11);
+    padding-left: 1.75rem;
+    background-color: rgba(248, 250, 252, 0.6);
+  }
+
+  #versprechen-journey .journey-desc {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #versprechen-journey .journey-item.is-active .journey-desc {
+    grid-template-rows: 1fr;
+  }
+  #versprechen-journey .journey-desc > div {
+    overflow: hidden;
+  }
+
+  #versprechen-journey .journey-overlay {
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 500ms ease-out,
+      transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  #versprechen-journey .journey-overlay.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #versprechen-journey .journey-item,
+    #versprechen-journey .journey-desc,
+    #versprechen-journey .journey-overlay {
+      transition: none;
+    }
+    #versprechen-journey .taxi-on-path {
+      animation: none !important;
+    }
+    #versprechen-journey .taxi-on-path animateMotion {
+      display: none;
+    }
+  }
+</style>
