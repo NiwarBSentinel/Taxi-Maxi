@@ -5,6 +5,8 @@ import {
   ArrowLeftRight,
   ArrowRight,
   MessageCircle,
+  Locate,
+  Loader2,
 } from "@lucide/astro";
 ---
 
@@ -35,6 +37,20 @@ import {
               class="w-full text-base font-medium border-0 outline-none bg-transparent placeholder:text-slate-400 placeholder:font-normal"
             />
           </div>
+          <button
+            id="booking-locate"
+            type="button"
+            title="Aktuellen Standort verwenden"
+            aria-label="Aktuellen Standort verwenden"
+            class="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/5 hover:bg-primary/15 text-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center mt-0.5"
+          >
+            <span class="locate-idle">
+              <Locate size={18} strokeWidth={2} />
+            </span>
+            <span class="locate-loading hidden">
+              <Loader2 size={18} strokeWidth={2} class="animate-spin" />
+            </span>
+          </button>
         </div>
         <ul
           id="from-suggestions"
@@ -380,6 +396,95 @@ import {
           delete toEl.dataset.lat;
           delete toEl.dataset.lon;
         }
+      });
+    }
+
+    const locateBtn = document.getElementById("booking-locate");
+    if (locateBtn && fromEl) {
+      const idleIcon = locateBtn.querySelector(".locate-idle");
+      const loadingIcon = locateBtn.querySelector(".locate-loading");
+
+      function setLocateLoading(loading) {
+        if (loading) {
+          if (idleIcon) idleIcon.classList.add("hidden");
+          if (loadingIcon) loadingIcon.classList.remove("hidden");
+          locateBtn.disabled = true;
+        } else {
+          if (idleIcon) idleIcon.classList.remove("hidden");
+          if (loadingIcon) loadingIcon.classList.add("hidden");
+          locateBtn.disabled = false;
+        }
+      }
+
+      function formatReverseAddress(addr, fallback) {
+        addr = addr || {};
+        const parts = [];
+        if (addr.road) {
+          parts.push(addr.road + (addr.house_number ? " " + addr.house_number : ""));
+        }
+        const cityPart = [
+          addr.postcode,
+          addr.city || addr.town || addr.village || addr.municipality,
+        ]
+          .filter(Boolean)
+          .join(" ");
+        if (cityPart) parts.push(cityPart);
+        return parts.join(", ") || fallback || "Aktueller Standort";
+      }
+
+      locateBtn.addEventListener("click", function () {
+        if (!navigator.geolocation) {
+          alert("Standortermittlung wird von Ihrem Browser nicht unterstützt.");
+          return;
+        }
+        setLocateLoading(true);
+        navigator.geolocation.getCurrentPosition(
+          async function (pos) {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            try {
+              const url =
+                "https://nominatim.openstreetmap.org/reverse?lat=" +
+                lat +
+                "&lon=" +
+                lon +
+                "&format=json&addressdetails=1&accept-language=de-CH";
+              const res = await fetch(url, {
+                headers: { "Accept-Language": "de-CH" },
+              });
+              if (!res.ok) throw new Error("Reverse geocoding " + res.status);
+              const data = await res.json();
+              fromEl.value = formatReverseAddress(
+                data.address,
+                data.display_name
+              );
+              fromEl.dataset.lat = String(lat);
+              fromEl.dataset.lon = String(lon);
+            } catch (err) {
+              console.error("Reverse geocoding failed", err);
+              fromEl.value = "Aktueller Standort";
+              fromEl.dataset.lat = String(lat);
+              fromEl.dataset.lon = String(lon);
+            } finally {
+              setLocateLoading(false);
+            }
+          },
+          function (err) {
+            setLocateLoading(false);
+            let msg = "Standort konnte nicht ermittelt werden.";
+            if (err && err.code === 1) {
+              msg =
+                "Standortzugriff wurde verweigert. Bitte in den Browser-Einstellungen erlauben.";
+            } else if (err && err.code === 2) {
+              msg =
+                "Kein GPS-Signal verfügbar. Bitte prüfen Sie Ihre Verbindung.";
+            } else if (err && err.code === 3) {
+              msg = "Standortermittlung dauerte zu lange. Bitte erneut versuchen.";
+            }
+            alert(msg);
+          },
+          { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
+        );
       });
     }
 
