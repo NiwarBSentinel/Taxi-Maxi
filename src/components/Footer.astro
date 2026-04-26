@@ -1,4 +1,6 @@
 ---
+import { Heart } from "@lucide/astro";
+
 const cols = [
   {
     title: "Services",
@@ -55,8 +57,12 @@ const cols = [
         ))
       }
     </div>
-    <div class="mt-14 pt-8 border-t border-white/10 text-xs text-white/50 text-center">
-      © 2026 Taxi-Maxi GmbH · Konzessioniert in Zürich · Made with ❤️ in Zürich
+    <div
+      class="mt-14 pt-8 border-t border-white/10 text-xs text-white/50 text-center flex items-center justify-center flex-wrap gap-1"
+    >
+      <span>© 2026 Taxi-Maxi GmbH · Konzessioniert in Zürich · Made with</span>
+      <Heart size={14} fill="currentColor" class="inline text-orange-400" />
+      <span>in Zürich</span>
     </div>
   </div>
 </footer>

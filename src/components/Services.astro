@@ -1,21 +1,23 @@
 ---
+import { Car, Plane, Briefcase } from "@lucide/astro";
+
 const services = [
   {
-    icon: "🚕",
+    Icon: Car,
     title: "Standard-Taxi",
     subtitle: "Unkompliziert von A nach B",
     description:
       "Schnelle Fahrten innerhalb Zürichs und der Region. Verlässlich, pünktlich, fair tarifiert nach offiziellem Zürcher Taxitarif.",
   },
   {
-    icon: "✈️",
+    Icon: Plane,
     title: "Flughafen-Transfer",
     subtitle: "Stressfrei abheben, entspannt landen",
     description:
       "Pünktlich am Terminal Zürich Kloten. Festpreise auf Anfrage, freundliche Fahrer, Hilfe mit dem Gepäck inklusive.",
   },
   {
-    icon: "💼",
+    Icon: Briefcase,
     title: "Geschäftskunden",
     subtitle: "Diskret. Professionell. Verlässlich.",
     description:
@@ -37,17 +39,25 @@ const services = [
 
     <div class="mt-16 grid gap-8 md:grid-cols-3">
       {
-        services.map((s) => (
-          <article class="group bg-soft border border-slate-100 rounded-2xl p-8 transition-all duration-300 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-accent/50 cursor-pointer">
-            <div class="text-4xl mb-6">{s.icon}</div>
-            <h3 class="text-xl font-extrabold text-dark mb-1">{s.title}</h3>
-            <p class="text-sm text-muted mb-4">{s.subtitle}</p>
-            <p class="text-base text-dark/80 leading-relaxed">{s.description}</p>
+        services.map(({ Icon, title, subtitle, description }) => (
+          <article class="group bg-soft border border-slate-100 rounded-2xl p-8 transition-all duration-300 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-orange-300 cursor-pointer">
+            <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+              <Icon size={28} strokeWidth={2} class="text-primary" />
+            </div>
+            <h3 class="text-xl font-extrabold text-dark mb-1">{title}</h3>
+            <p class="text-sm text-muted mb-4">{subtitle}</p>
+            <p class="text-base text-dark/80 leading-relaxed">{description}</p>
             <a
               href="#kontakt"
-              class="mt-6 inline-flex items-center gap-1 text-primary font-semibold text-sm transition group-hover:gap-2"
+              class="mt-6 inline-flex items-center gap-1 text-primary font-semibold text-sm"
             >
-              Mehr erfahren <span aria-hidden="true">→</span>
+              Mehr erfahren
+              <span
+                aria-hidden="true"
+                class="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
             </a>
           </article>
         ))

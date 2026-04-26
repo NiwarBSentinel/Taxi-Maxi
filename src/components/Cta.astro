@@ -1,4 +1,5 @@
 ---
+import { Phone } from "@lucide/astro";
 ---
 
 <section class="py-20 sm:py-24 bg-gradient-to-br from-amber-50 via-amber-100 to-amber-50">
@@ -14,11 +15,17 @@
     <div class="mt-10">
       <a
         href="tel:+41441234567"
-        class="inline-flex items-center gap-3 bg-primary hover:bg-blue-800 text-white text-xl sm:text-2xl font-bold px-8 py-5 rounded-xl shadow-lg transition hover:shadow-xl hover:-translate-y-0.5"
+        class="inline-flex items-center gap-3 bg-primary text-white text-xl sm:text-2xl font-bold px-8 py-5 rounded-xl shadow-lg transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30"
       >
-        <span>📞</span>
+        <Phone size={22} strokeWidth={2.5} class="text-white" />
         <span>044 123 45 67</span>
       </a>
+      <p class="mt-5 text-sm text-slate-600">
+        Lieber online buchen?
+        <a href="#kontakt" class="underline hover:text-primary"
+          >Hier zum Formular ↓</a
+        >
+      </p>
     </div>
   </div>
 </section>
