@@ -1,12 +1,6 @@
 ---
 import { Phone } from "@lucide/astro";
 
-interface Props {
-  forceSolid?: boolean;
-}
-
-const { forceSolid = false } = Astro.props;
-
 const links = [
   { href: "/#services", label: "Services" },
   { href: "/#versprechen", label: "Versprechen" },
@@ -16,14 +10,13 @@ const links = [
 
 <header
   id="site-header"
-  data-force-solid={forceSolid ? "true" : "false"}
-  class={`fixed top-0 left-0 right-0 z-50 ${forceSolid ? "scrolled" : ""}`}
+  class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <a
         href="/"
-        class="logo-frame inline-flex items-center justify-center rounded-xl"
+        class="inline-flex items-center"
         aria-label="Taxi Shiar - Startseite"
       >
         <img
@@ -42,7 +35,7 @@ const links = [
           links.map((l) => (
             <a
               href={l.href}
-              class="header-link text-white/90 hover:text-white text-sm font-medium"
+              class="header-link text-slate-700 hover:text-primary text-sm font-medium transition-colors duration-200"
             >
               {l.label}
             </a>
@@ -72,9 +65,9 @@ const links = [
           aria-controls="mobile-menu"
           class="md:hidden inline-flex flex-col items-center justify-center gap-1.5 w-11 h-11 rounded-xl"
         >
-          <span class="hamburger-line block w-5 h-0.5 bg-white"></span>
-          <span class="hamburger-line block w-5 h-0.5 bg-white"></span>
-          <span class="hamburger-line block w-5 h-0.5 bg-white"></span>
+          <span class="block w-5 h-0.5 bg-slate-700"></span>
+          <span class="block w-5 h-0.5 bg-slate-700"></span>
+          <span class="block w-5 h-0.5 bg-slate-700"></span>
         </button>
       </div>
     </div>
@@ -85,7 +78,7 @@ const links = [
           links.map((l) => (
             <a
               href={l.href}
-              class="header-link block px-2 py-3 text-white text-base font-medium"
+              class="block px-2 py-3 text-slate-900 hover:text-primary text-base font-medium transition-colors"
             >
               {l.label}
             </a>
@@ -98,31 +91,18 @@ const links = [
 
 <script is:inline>
   (function () {
-    const header = document.getElementById("site-header");
-    if (!header) return;
-    const forceSolid = header.dataset.forceSolid === "true";
-
-    const updateHeader = () => {
-      if (forceSolid) {
-        header.classList.add("scrolled");
-        return;
-      }
-      if (window.scrollY > 24) header.classList.add("scrolled");
-      else header.classList.remove("scrolled");
-    };
-    updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
-
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
-    menuToggle?.addEventListener("click", function () {
-      const open = mobileMenu?.classList.toggle("open");
+    if (!menuToggle || !mobileMenu) return;
+
+    menuToggle.addEventListener("click", function () {
+      const open = mobileMenu.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    mobileMenu?.querySelectorAll("a").forEach(function (a) {
+    mobileMenu.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
         mobileMenu.classList.remove("open");
-        menuToggle?.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-expanded", "false");
       });
     });
   })();

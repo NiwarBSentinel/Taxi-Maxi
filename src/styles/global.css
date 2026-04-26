@@ -42,52 +42,7 @@
   max-height: 24rem;
 }
 
-#site-header {
-  transition:
-    background-color 250ms ease,
-    box-shadow 250ms ease,
-    backdrop-filter 250ms ease;
-}
-#site-header .header-link,
-#site-header .hamburger-line {
-  transition: color 250ms ease, background-color 250ms ease;
-}
-
-#site-header.scrolled {
-  background-color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px -8px rgba(15, 23, 42, 0.12);
-}
-#site-header.scrolled .header-link {
-  color: var(--color-dark);
-}
-#site-header.scrolled .header-link:hover {
-  color: var(--color-primary);
-}
-#site-header.scrolled .hamburger-line {
-  background-color: var(--color-dark);
-}
-
-.logo-frame {
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 0.5rem 0.875rem;
-  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.15);
-  transition:
-    background-color 300ms ease,
-    padding 300ms ease,
-    box-shadow 300ms ease;
-}
-#site-header.scrolled .logo-frame {
-  background-color: transparent;
-  padding: 0;
-  box-shadow: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .logo-frame {
-    transition: none !important;
-  }
-}
+/* Header is permanently white — see Header.astro */
 
 /* ===== Animated keyframes ===== */
 @keyframes ken-burns {
