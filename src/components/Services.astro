@@ -28,7 +28,7 @@ const services = [
 
 <section id="services" class="bg-white pt-12 pb-24 md:pt-32 md:pb-32 lg:pt-40">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl">
+    <div class="reveal-up max-w-3xl">
       <p class="text-primary uppercase tracking-[0.25em] text-xs sm:text-sm font-semibold mb-4">
         Unsere Services
       </p>
@@ -39,25 +39,24 @@ const services = [
 
     <div class="mt-16 grid gap-8 md:grid-cols-3">
       {
-        services.map(({ Icon, title, subtitle, description }) => (
-          <article class="group bg-soft border border-slate-100 rounded-2xl p-8 transition-all duration-300 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-orange-300 cursor-pointer">
-            <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-              <Icon size={28} strokeWidth={2} class="text-primary" />
+        services.map(({ Icon, title, subtitle, description }, idx) => (
+          <article
+            class="service-card reveal-up bg-soft border border-slate-100 rounded-2xl p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 cursor-pointer"
+            style={`--reveal-delay: ${idx * 120}ms`}
+          >
+            <span aria-hidden="true" class="service-accent-bar" />
+            <div class="service-icon-box w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+              <Icon size={28} strokeWidth={2} class="service-icon text-primary" />
             </div>
             <h3 class="text-xl font-extrabold text-dark mb-1">{title}</h3>
             <p class="text-sm text-muted mb-4">{subtitle}</p>
             <p class="text-base text-dark/80 leading-relaxed">{description}</p>
             <a
               href="#kontakt"
-              class="mt-6 inline-flex items-center gap-1 text-primary font-semibold text-sm"
+              class="service-cta mt-6 inline-flex items-center gap-1 text-primary font-medium text-sm"
             >
               Mehr erfahren
-              <span
-                aria-hidden="true"
-                class="inline-block transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
+              <span aria-hidden="true" class="service-arrow">→</span>
             </a>
           </article>
         ))

@@ -82,6 +82,36 @@ const {
     </main>
     <Footer />
 
+    <script is:inline>
+      (function () {
+        const reduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        const targets = document.querySelectorAll(".reveal-up, .reveal-scale");
+        if (!targets.length) return;
+        if (reduced || !("IntersectionObserver" in window)) {
+          targets.forEach(function (el) {
+            el.classList.add("visible");
+          });
+          return;
+        }
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+        );
+        targets.forEach(function (el) {
+          observer.observe(el);
+        });
+      })();
+    </script>
+
     <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>
