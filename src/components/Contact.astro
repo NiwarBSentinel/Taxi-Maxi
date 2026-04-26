@@ -32,7 +32,7 @@ import { Phone, Mail, Clock, MapPin } from "@lucide/astro";
               >
             </span>
           </a>
-          <a href="mailto:info@taxi-maxi.ch" class="flex items-start gap-4 group">
+          <a href="mailto:info@shiar-taxi.ch" class="flex items-start gap-4 group">
             <span
               class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center"
             >
@@ -44,7 +44,7 @@ import { Phone, Mail, Clock, MapPin } from "@lucide/astro";
               >
               <span
                 class="block text-base font-medium text-dark group-hover:text-primary transition"
-                >info@taxi-maxi.ch</span
+                >info@shiar-taxi.ch</span
               >
             </span>
           </a>
@@ -83,7 +83,7 @@ import { Phone, Mail, Clock, MapPin } from "@lucide/astro";
         method="POST"
         class="bg-white border border-slate-200 rounded-2xl p-8 sm:p-10 space-y-5 shadow-sm"
       >
-        <input type="hidden" name="_subject" value="Neue Anfrage über Taxi-Maxi Website" />
+        <input type="hidden" name="_subject" value="Neue Anfrage über Shiar TAXI Website" />
         <input type="hidden" name="_next" value="https://taxi-maxi.vercel.app/?sent=true" />
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
 
@@ -95,7 +95,7 @@ import { Phone, Mail, Clock, MapPin } from "@lucide/astro";
             name="name"
             required
             autocomplete="name"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent-light outline-none transition"
           />
         </div>
         <div class="grid sm:grid-cols-2 gap-5">
@@ -106,7 +106,7 @@ import { Phone, Mail, Clock, MapPin } from "@lucide/astro";
               id="phone"
               name="phone"
               autocomplete="tel"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent-light outline-none transition"
             />
           </div>
           <div>
@@ -117,7 +117,7 @@ import { Phone, Mail, Clock, MapPin } from "@lucide/astro";
               name="email"
               required
               autocomplete="email"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent-light outline-none transition"
             />
           </div>
         </div>
@@ -128,12 +128,12 @@ import { Phone, Mail, Clock, MapPin } from "@lucide/astro";
             name="message"
             rows="4"
             required
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition resize-none"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent-light outline-none transition resize-none"
           ></textarea>
         </div>
         <button
           type="submit"
-          class="w-full bg-accent hover:bg-orange-400 text-white font-bold text-base px-8 py-4 rounded-xl shadow-sm transition duration-300 hover:shadow-md hover:scale-[1.01]"
+          class="w-full bg-accent hover:bg-accent-dark text-white font-bold text-base px-8 py-4 rounded-xl shadow-sm transition duration-300 hover:shadow-md hover:scale-[1.01]"
         >
           Anfrage senden
         </button>

@@ -33,7 +33,16 @@ const cols = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
       <div>
-        <a href="/" class="text-2xl font-extrabold text-white tracking-tight">Taxi-Maxi</a>
+        <a
+          href="/"
+          class="flex items-center gap-2 group"
+          aria-label="Shiar TAXI - Startseite"
+        >
+          <span class="text-2xl font-extrabold tracking-tight leading-none">
+            <span class="text-white">Shiar</span><span
+              class="text-accent ml-1.5">TAXI</span>
+          </span>
+        </a>
         <p class="mt-4 text-sm leading-relaxed">
           Ihr persönlicher Taxi-Service in Zürich. 24/7.
         </p>
@@ -60,8 +69,8 @@ const cols = [
     <div
       class="mt-14 pt-8 border-t border-white/10 text-xs text-white/50 text-center flex items-center justify-center flex-wrap gap-1"
     >
-      <span>© 2026 Taxi-Maxi GmbH · Konzessioniert in Zürich · Made with</span>
-      <Heart size={14} fill="currentColor" class="inline text-orange-400" />
+      <span>© 2026 Shiar TAXI GmbH · Konzessioniert in Zürich · Made with</span>
+      <Heart size={14} fill="currentColor" class="inline text-accent" />
       <span>in Zürich</span>
     </div>
   </div>

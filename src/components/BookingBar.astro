@@ -230,9 +230,9 @@ import {
             return (
               '<li data-index="' +
               i +
-              '" role="option" class="suggestion-item px-4 py-3 cursor-pointer hover:bg-orange-50 transition-colors duration-150 border-b border-slate-100 last:border-b-0">' +
+              '" role="option" class="suggestion-item px-4 py-3 cursor-pointer hover:bg-accent-light/30 transition-colors duration-150 border-b border-slate-100 last:border-b-0">' +
               '<div class="flex items-start gap-3">' +
-              '<svg class="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<svg class="w-4 h-4 text-accent-dark mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
               '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>' +
               '<circle cx="12" cy="10" r="3"/>' +
               "</svg>" +
@@ -275,10 +275,10 @@ import {
         const items = dropdown.querySelectorAll(".suggestion-item");
         items.forEach(function (item, i) {
           if (i === index) {
-            item.classList.add("bg-orange-50");
+            item.classList.add("bg-accent-light/30");
             item.scrollIntoView({ block: "nearest" });
           } else {
-            item.classList.remove("bg-orange-50");
+            item.classList.remove("bg-accent-light/30");
           }
         });
       }

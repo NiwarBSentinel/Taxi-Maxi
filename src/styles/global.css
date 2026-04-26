@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1E40AF;
-  --color-primary-light: #3B82F6;
-  --color-accent: #F59E0B;
-  --color-accent-soft: #FEF3C7;
+  --color-primary: #0B2A5B;
+  --color-primary-light: #1E4A8B;
+  --color-primary-dark: #061A3D;
+  --color-accent: #FFC72C;
+  --color-accent-dark: #E0A800;
+  --color-accent-light: #FFE08A;
   --color-dark: #0F172A;
   --color-muted: #64748B;
   --color-soft: #F8FAFC;
@@ -48,6 +50,8 @@
 }
 #site-header .header-link,
 #site-header .header-logo,
+#site-header .logo-shiar,
+#site-header .logo-taxi,
 #site-header .hamburger-line {
   transition: color 250ms ease, background-color 250ms ease;
 }
@@ -64,8 +68,11 @@
 #site-header.scrolled .header-link:hover {
   color: var(--color-primary);
 }
-#site-header.scrolled .header-logo {
+#site-header.scrolled .logo-shiar {
   color: var(--color-primary);
+}
+#site-header.scrolled .logo-taxi {
+  color: var(--color-accent-dark);
 }
 #site-header.scrolled .hamburger-line {
   background-color: var(--color-dark);
@@ -311,7 +318,7 @@
 
 /* ===== CTA banner: animated gradient + status indicator + ringing button ===== */
 .cta-gradient {
-  background: linear-gradient(120deg, #FEF3C7, #FED7AA, #FEF3C7);
+  background: linear-gradient(120deg, #FFF4D1, #FFE08A, #FFF4D1);
   background-size: 200% 200%;
 }
 @media (prefers-reduced-motion: no-preference) {
