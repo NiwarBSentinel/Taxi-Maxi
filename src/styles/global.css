@@ -44,30 +44,7 @@
 
 /* Header is permanently white — see Header.astro */
 
-/* ===== Footer animated gold stripe ===== */
-@keyframes gold-stripe-slide {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(400%);
-  }
-}
-.animate-gold-stripe {
-  animation: gold-stripe-slide 6s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .animate-gold-stripe {
-    animation: none;
-    transform: translateX(0);
-    width: 100%;
-    background: linear-gradient(
-      to right,
-      var(--color-accent),
-      var(--color-accent-dark)
-    );
-  }
-}
+/* Footer race-stripe styles live in Footer.astro */
 
 /* ===== Animated keyframes ===== */
 @keyframes ken-burns {
