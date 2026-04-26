@@ -131,12 +131,25 @@ const items = [
           class="relative w-full max-w-lg lg:max-w-xl h-auto object-contain z-10"
         />
 
-        <div
-          class="absolute top-4 right-4 lg:top-8 lg:right-0 z-20 min-w-[200px] min-h-[72px]"
-        >
+        <div data-fleet-badge="0" class="fleet-badge fleet-badge-pos-0 z-20">
+          <svg
+            class="badge-connector"
+            viewBox="0 0 100 60"
+            preserveAspectRatio="none"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M 0 30 Q 30 30 60 50 L 100 50"
+              stroke="rgb(16 185 129)"
+              stroke-width="1.5"
+              stroke-dasharray="3 3"
+              stroke-linecap="round"></path>
+            <circle cx="100" cy="50" r="3" fill="rgb(16 185 129)"></circle>
+          </svg>
           <div
-            data-fleet-badge="0"
-            class="fleet-badge bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
+            class="bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
           >
             <div
               class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0"
@@ -161,10 +174,27 @@ const items = [
               </p>
             </div>
           </div>
+        </div>
 
+        <div data-fleet-badge="1" class="fleet-badge fleet-badge-pos-1 z-20">
+          <svg
+            class="badge-connector"
+            viewBox="0 0 100 60"
+            preserveAspectRatio="none"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M 100 30 Q 70 30 40 30 L 0 30"
+              stroke="rgb(37 99 235)"
+              stroke-width="1.5"
+              stroke-dasharray="3 3"
+              stroke-linecap="round"></path>
+            <circle cx="0" cy="30" r="3" fill="rgb(37 99 235)"></circle>
+          </svg>
           <div
-            data-fleet-badge="1"
-            class="fleet-badge bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
+            class="bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
           >
             <div
               class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0"
@@ -184,10 +214,27 @@ const items = [
               </p>
             </div>
           </div>
+        </div>
 
+        <div data-fleet-badge="2" class="fleet-badge fleet-badge-pos-2 z-20">
+          <svg
+            class="badge-connector"
+            viewBox="0 0 100 60"
+            preserveAspectRatio="none"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M 0 60 Q 30 30 60 10 L 100 0"
+              stroke="rgb(234 88 12)"
+              stroke-width="1.5"
+              stroke-dasharray="3 3"
+              stroke-linecap="round"></path>
+            <circle cx="0" cy="60" r="3" fill="rgb(234 88 12)"></circle>
+          </svg>
           <div
-            data-fleet-badge="2"
-            class="fleet-badge bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
+            class="bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
           >
             <div
               class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0"
@@ -351,11 +398,10 @@ const items = [
 
   .fleet-badge {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    display: flex;
+    align-items: center;
     opacity: 0;
-    transform: translateX(20px);
+    transform: scale(0.95);
     pointer-events: none;
     transition:
       opacity 500ms ease-out,
@@ -363,15 +409,72 @@ const items = [
   }
   .fleet-badge.is-visible {
     opacity: 1;
-    transform: translateX(0);
+    transform: scale(1);
     pointer-events: auto;
+  }
+
+  .badge-connector {
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 500ms ease-out 200ms;
+  }
+  .fleet-badge.is-visible .badge-connector {
+    opacity: 0.6;
+  }
+
+  .fleet-badge-pos-0 {
+    top: 8%;
+    left: 0%;
+  }
+  .fleet-badge-pos-0 .badge-connector {
+    right: -75px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .fleet-badge-pos-1 {
+    top: 38%;
+    right: -3%;
+  }
+  .fleet-badge-pos-1 .badge-connector {
+    left: -75px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .fleet-badge-pos-2 {
+    bottom: 5%;
+    right: 5%;
+  }
+  .fleet-badge-pos-2 .badge-connector {
+    left: -75px;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+
+  @media (max-width: 1024px) {
+    .badge-connector {
+      display: none;
+    }
+    .fleet-badge-pos-0,
+    .fleet-badge-pos-1,
+    .fleet-badge-pos-2 {
+      top: 5%;
+      left: 5%;
+      right: auto;
+      bottom: auto;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     #fleet-accordion .fleet-item,
     #fleet-accordion .fleet-desc,
     #fleet-accordion .fleet-chevron,
-    .fleet-badge {
+    .fleet-badge,
+    .badge-connector {
       transition: none !important;
     }
   }
