@@ -1,0 +1,208 @@
+---
+import { MapPin, Clock, ArrowLeftRight, ArrowRight, MessageCircle } from "@lucide/astro";
+---
+
+<div class="relative z-20 max-w-5xl mx-auto px-4 mt-6 md:-mt-16 lg:-mt-20">
+  <div class="bg-white rounded-2xl shadow-2xl p-2">
+    <div class="flex flex-col md:flex-row md:items-stretch">
+      <!-- Von -->
+      <div class="flex-1 p-4 hover:bg-slate-50 transition-colors rounded-xl cursor-text">
+        <div class="flex items-start gap-3">
+          <MapPin
+            size={18}
+            strokeWidth={2}
+            class="text-primary opacity-60 mt-1 flex-shrink-0"
+          />
+          <div class="flex-1 min-w-0">
+            <label
+              for="booking-from"
+              class="block text-xs text-slate-500 uppercase tracking-wide font-semibold mb-1"
+              >Von</label
+            >
+            <input
+              id="booking-from"
+              type="text"
+              placeholder="Adresse oder Ort"
+              autocomplete="off"
+              class="w-full text-base font-medium border-0 outline-none bg-transparent placeholder:text-slate-400 placeholder:font-normal"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Swap -->
+      <div class="flex items-center justify-center py-1 md:py-0 md:px-1">
+        <button
+          id="booking-swap"
+          type="button"
+          aria-label="Adressen tauschen"
+          class="group w-10 h-10 bg-slate-100 hover:bg-primary/10 rounded-full flex items-center justify-center transition-colors"
+        >
+          <ArrowLeftRight
+            size={18}
+            strokeWidth={2}
+            class="text-slate-600 group-hover:text-primary transition-colors rotate-90 md:rotate-0"
+          />
+        </button>
+      </div>
+
+      <!-- Nach -->
+      <div
+        class="flex-1 p-4 hover:bg-slate-50 transition-colors rounded-xl cursor-text border-t md:border-t-0 md:border-l border-slate-200"
+      >
+        <div class="flex items-start gap-3">
+          <MapPin size={18} strokeWidth={2} class="text-primary mt-1 flex-shrink-0" />
+          <div class="flex-1 min-w-0">
+            <label
+              for="booking-to"
+              class="block text-xs text-slate-500 uppercase tracking-wide font-semibold mb-1"
+              >Nach</label
+            >
+            <input
+              id="booking-to"
+              type="text"
+              placeholder="Wohin geht's?"
+              autocomplete="off"
+              class="w-full text-base font-medium border-0 outline-none bg-transparent placeholder:text-slate-400 placeholder:font-normal"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Wann -->
+      <div
+        class="flex-1 p-4 hover:bg-slate-50 transition-colors rounded-xl cursor-pointer border-t md:border-t-0 md:border-l border-slate-200"
+      >
+        <div class="flex items-start gap-3">
+          <Clock size={18} strokeWidth={2} class="text-primary mt-1 flex-shrink-0" />
+          <div class="flex-1 min-w-0">
+            <label
+              for="booking-when"
+              class="block text-xs text-slate-500 uppercase tracking-wide font-semibold mb-1"
+              >Wann</label
+            >
+            <select
+              id="booking-when"
+              class="w-full text-base font-medium appearance-none border-0 outline-none bg-transparent cursor-pointer pr-2"
+            >
+              <option value="Sofort">Sofort</option>
+              <option value="In 30 Minuten">In 30 Minuten</option>
+              <option value="In 1 Stunde">In 1 Stunde</option>
+              <option value="Heute Abend">Heute Abend</option>
+              <option value="Morgen">Morgen</option>
+              <option value="custom">Termin wählen...</option>
+            </select>
+            <input
+              id="booking-when-custom"
+              type="datetime-local"
+              class="hidden w-full text-base font-medium border-0 outline-none bg-transparent mt-1"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div
+        class="p-2 md:flex md:items-stretch border-t md:border-t-0 border-slate-200"
+      >
+        <button
+          id="booking-submit"
+          type="button"
+          class="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-bold text-base px-6 py-4 rounded-xl transition duration-300 hover:scale-[1.02] hover:shadow-lg"
+        >
+          <span>Bestellen</span>
+          <ArrowRight size={20} strokeWidth={2.5} />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 md:mt-8 text-center px-4">
+    <p class="inline-flex items-center gap-2 text-sm text-slate-500">
+      <MessageCircle size={14} strokeWidth={2} class="flex-shrink-0" />
+      <span
+        >Wir öffnen WhatsApp für die Bestellung · Antwort innert wenigen Minuten</span
+      >
+    </p>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const fromEl = document.getElementById("booking-from");
+    const toEl = document.getElementById("booking-to");
+    const whenEl = document.getElementById("booking-when");
+    const whenCustomEl = document.getElementById("booking-when-custom");
+    const swapBtn = document.getElementById("booking-swap");
+    const submitBtn = document.getElementById("booking-submit");
+
+    if (whenEl && whenCustomEl) {
+      whenEl.addEventListener("change", function () {
+        if (whenEl.value === "custom") {
+          whenEl.classList.add("hidden");
+          whenCustomEl.classList.remove("hidden");
+          whenCustomEl.focus();
+          if (typeof whenCustomEl.showPicker === "function") {
+            whenCustomEl.showPicker();
+          }
+        }
+      });
+    }
+
+    if (swapBtn && fromEl && toEl) {
+      swapBtn.addEventListener("click", function () {
+        const tmp = fromEl.value;
+        fromEl.value = toEl.value;
+        toEl.value = tmp;
+      });
+    }
+
+    if (submitBtn) {
+      submitBtn.addEventListener("click", function () {
+        const from = fromEl ? fromEl.value.trim() : "";
+        const to = toEl ? toEl.value.trim() : "";
+
+        if (!from || !to) {
+          alert("Bitte geben Sie Start- und Zieladresse an.");
+          return;
+        }
+
+        let when = whenEl ? whenEl.value : "Sofort";
+        if (when === "custom") {
+          const custom = whenCustomEl ? whenCustomEl.value : "";
+          if (custom) {
+            try {
+              when = new Date(custom).toLocaleString("de-CH", {
+                dateStyle: "short",
+                timeStyle: "short",
+              });
+            } catch (e) {
+              when = custom;
+            }
+          } else {
+            when = "Termin folgt";
+          }
+        }
+
+        const message =
+          "Hallo Taxi-Maxi 👋\n\n" +
+          "Ich möchte eine Fahrt buchen:\n\n" +
+          "📍 Von: " +
+          from +
+          "\n" +
+          "📍 Nach: " +
+          to +
+          "\n" +
+          "🕐 Wann: " +
+          when +
+          "\n\n" +
+          "Vielen Dank!";
+
+        const phone = "41441234567";
+        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+        window.open(url, "_blank");
+      });
+    }
+  })();
+</script>
