@@ -1,17 +1,27 @@
 ---
 import { Phone } from "@lucide/astro";
 
+interface Props {
+  forceSolid?: boolean;
+}
+
+const { forceSolid = false } = Astro.props;
+
 const links = [
-  { href: "#services", label: "Services" },
-  { href: "#versprechen", label: "Versprechen" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/#services", label: "Services" },
+  { href: "/#versprechen", label: "Versprechen" },
+  { href: "/#kontakt", label: "Kontakt" },
 ];
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50">
+<header
+  id="site-header"
+  data-force-solid={forceSolid ? "true" : "false"}
+  class={`fixed top-0 left-0 right-0 z-50 ${forceSolid ? "scrolled" : ""}`}
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
-      <a href="#" class="header-logo text-2xl font-extrabold tracking-tight text-white">
+      <a href="/" class="header-logo text-2xl font-extrabold tracking-tight text-white">
         Taxi-Maxi
       </a>
 
@@ -75,25 +85,33 @@ const links = [
 </header>
 
 <script is:inline>
-  const header = document.getElementById("site-header");
-  const updateHeader = () => {
+  (function () {
+    const header = document.getElementById("site-header");
     if (!header) return;
-    if (window.scrollY > 24) header.classList.add("scrolled");
-    else header.classList.remove("scrolled");
-  };
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+    const forceSolid = header.dataset.forceSolid === "true";
 
-  const menuToggle = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
-  menuToggle?.addEventListener("click", () => {
-    const open = mobileMenu?.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-  mobileMenu?.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => {
-      mobileMenu.classList.remove("open");
-      menuToggle?.setAttribute("aria-expanded", "false");
+    const updateHeader = () => {
+      if (forceSolid) {
+        header.classList.add("scrolled");
+        return;
+      }
+      if (window.scrollY > 24) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+    };
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuToggle?.addEventListener("click", function () {
+      const open = mobileMenu?.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
-  });
+    mobileMenu?.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        mobileMenu.classList.remove("open");
+        menuToggle?.setAttribute("aria-expanded", "false");
+      });
+    });
+  })();
 </script>

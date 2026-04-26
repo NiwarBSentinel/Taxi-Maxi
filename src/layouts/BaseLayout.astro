@@ -1,0 +1,87 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  twitterDescription?: string;
+  canonicalPath?: string;
+  robots?: string;
+  solidHeader?: boolean;
+  bodyClass?: string;
+}
+
+const siteUrl = "https://taxi-maxi.vercel.app";
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  twitterDescription = description,
+  canonicalPath = "/",
+  robots = "index, follow",
+  solidHeader = false,
+  bodyClass = "bg-white text-dark antialiased",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de-CH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Taxi Zürich, Taxi 24/7, Flughafen Transfer Zürich Kloten, Geschäftstaxi Zürich, Taxi-Maxi"
+    />
+    <meta name="author" content="Taxi-Maxi GmbH" />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={`${siteUrl}${canonicalPath}`} />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#1E40AF" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_CH" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={`${siteUrl}${canonicalPath}`} />
+    <meta property="og:site_name" content="Taxi-Maxi" />
+    <meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Taxi-Maxi · Ihr Taxi in Zürich" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={twitterDescription} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <Header forceSolid={solidHeader} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
+</html>
