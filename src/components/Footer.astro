@@ -1,0 +1,62 @@
+---
+const cols = [
+  {
+    title: "Services",
+    items: [
+      { href: "#services", label: "Standard-Taxi" },
+      { href: "#services", label: "Flughafen-Transfer" },
+      { href: "#services", label: "Geschäftskunden" },
+    ],
+  },
+  {
+    title: "Unternehmen",
+    items: [
+      { href: "#", label: "Über uns" },
+      { href: "#", label: "Karriere" },
+      { href: "#kontakt", label: "Kontakt" },
+    ],
+  },
+  {
+    title: "Rechtliches",
+    items: [
+      { href: "#", label: "Impressum" },
+      { href: "#", label: "Datenschutz" },
+      { href: "#", label: "AGB" },
+    ],
+  },
+];
+---
+
+<footer class="bg-dark text-white/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <a href="#" class="text-2xl font-extrabold text-white tracking-tight">Taxi-Maxi</a>
+        <p class="mt-4 text-sm leading-relaxed">
+          Ihr persönlicher Taxi-Service in Zürich. 24/7.
+        </p>
+      </div>
+      {
+        cols.map((col) => (
+          <div>
+            <h3 class="text-sm font-semibold text-white uppercase tracking-widest mb-5">
+              {col.title}
+            </h3>
+            <ul class="space-y-3 text-sm">
+              {col.items.map((item) => (
+                <li>
+                  <a href={item.href} class="hover:text-accent transition">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-14 pt-8 border-t border-white/10 text-xs text-white/50 text-center">
+      © 2026 Taxi-Maxi GmbH · Konzessioniert in Zürich · Made with ❤️ in Zürich
+    </div>
+  </div>
+</footer>

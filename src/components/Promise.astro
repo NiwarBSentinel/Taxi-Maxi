@@ -1,0 +1,52 @@
+---
+const values = [
+  {
+    icon: "⭐",
+    title: "Qualität",
+    text: "Konzessionierte Fahrer, moderne Fahrzeuge, regelmäßig kontrolliert. Bei uns fahren Profis.",
+  },
+  {
+    icon: "🤝",
+    title: "Persönlich",
+    text: "Lokal in Zürich verwurzelt. Sie sprechen direkt mit uns — kein Callcenter, keine Warteschleife.",
+  },
+  {
+    icon: "⏰",
+    title: "Pünktlich",
+    text: "24/7, 365 Tage im Jahr. Wenn wir sagen 18:30 Uhr, sind wir um 18:25 Uhr da.",
+  },
+  {
+    icon: "💰",
+    title: "Fair",
+    text: "Transparente Tarife nach offiziellem Zürcher Taxitarif. Keine versteckten Kosten, Bargeld und Karte akzeptiert.",
+  },
+];
+---
+
+<section id="versprechen" class="bg-dark py-24 sm:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="text-accent uppercase tracking-[0.25em] text-xs sm:text-sm font-semibold mb-4">
+        Unser Versprechen
+      </p>
+      <h2 class="text-white font-extrabold tracking-tight text-4xl sm:text-5xl leading-[1.1]">
+        Ihr Weg ist unser Ziel.
+      </h2>
+      <p class="mt-4 text-lg text-white/60">
+        Vier Werte, die jede Fahrt mit uns ausmachen.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        values.map((v) => (
+          <div class="border border-white/10 rounded-2xl p-7 transition-all duration-300 hover:border-accent/50 hover:bg-white/[0.02]">
+            <div class="text-3xl mb-5">{v.icon}</div>
+            <h3 class="text-xl font-bold text-white mb-3">{v.title}</h3>
+            <p class="text-sm text-white/70 leading-relaxed">{v.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
