@@ -38,35 +38,63 @@ const phrases = [
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12 sm:pt-16 md:pt-20 md:pb-40 lg:pb-48 w-full">
-    <p class="text-accent uppercase tracking-[0.25em] text-xs sm:text-sm font-semibold mb-6">
-      Taxi · Limmattal & Region Zürich
-    </p>
-    <h1
-      class="text-white font-extrabold leading-[1.05] text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight max-w-5xl"
-    >
-      Wir bringen Sie bequem und sicher{" "}
-      <span class="block sm:inline-block min-w-[10ch]">
-        <span id="rotating-word" class="rotating-word text-accent">zur Arbeit.</span>
-      </span>
-    </h1>
-    <p class="mt-8 text-lg sm:text-xl text-white/80 max-w-2xl leading-relaxed">
-      Ihr Taxi im Limmattal und der ganzen Region Zürich. 24/7 verfügbar, fair
-      tarifiert, immer pünktlich.
-    </p>
-    <div class="mt-10 flex flex-col sm:flex-row gap-4">
-      <a
-        href="tel:+41796466087"
-        class="btn-shimmer inline-flex items-center justify-center gap-2 bg-accent text-primary font-bold text-base px-8 py-4 rounded-xl shadow-lg transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent/40"
-      >
-        <Phone size={20} strokeWidth={2.5} class="phone-shake" />
-        <span>Jetzt anrufen</span>
-      </a>
-      <a
-        href="#services"
-        class="btn-outline-fill inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-accent text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors duration-300"
-      >
-        <span>Services entdecken</span>
-      </a>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div class="lg:col-span-7">
+        <p class="text-accent uppercase tracking-[0.25em] text-xs sm:text-sm font-semibold mb-6">
+          Taxi · Limmattal & Region Zürich
+        </p>
+        <h1
+          class="text-white font-extrabold leading-[1.05] text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight"
+        >
+          Wir bringen Sie bequem und sicher{" "}
+          <span class="block sm:inline-block min-w-[10ch]">
+            <span id="rotating-word" class="rotating-word text-accent">zur Arbeit.</span>
+          </span>
+        </h1>
+        <p class="mt-8 text-lg sm:text-xl text-white/80 max-w-2xl leading-relaxed">
+          Ihr Taxi im Limmattal und der ganzen Region Zürich. 24/7 verfügbar, fair
+          tarifiert, immer pünktlich.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a
+            href="tel:+41796466087"
+            class="btn-shimmer inline-flex items-center justify-center gap-2 bg-accent text-primary font-bold text-base px-8 py-4 rounded-xl shadow-lg transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent/40"
+          >
+            <Phone size={20} strokeWidth={2.5} class="phone-shake" />
+            <span>Jetzt anrufen</span>
+          </a>
+          <a
+            href="#services"
+            class="btn-outline-fill inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-accent text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors duration-300"
+          >
+            <span>Services entdecken</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hidden lg:block lg:col-span-5 relative">
+        <div
+          class="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
+          <div
+            class="w-[110%] h-[80%] rounded-full bg-gradient-to-br from-accent/20 via-primary-light/15 to-transparent blur-3xl"
+          >
+          </div>
+        </div>
+        <div
+          class="absolute bottom-[10%] left-[8%] right-[8%] h-6 bg-black/40 rounded-full blur-2xl pointer-events-none"
+        >
+        </div>
+        <img
+          src="/images/byd-fleet-transparent%20(1).png"
+          alt="Premium Hybrid-Fahrzeug der Taxi Shiar Flotte"
+          class="relative w-full h-auto object-contain z-10 drop-shadow-2xl animate-hero-car"
+          loading="eager"
+          fetchpriority="high"
+          width="1920"
+          height="1080"
+        />
+      </div>
     </div>
   </div>
 

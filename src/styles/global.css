@@ -52,6 +52,20 @@
   to { transform: scale(1.05); }
 }
 
+@keyframes hero-car-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-0.3deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-hero-car {
+    animation: hero-car-float 6s ease-in-out infinite;
+  }
+}
+
 @keyframes stoerer-float {
   0%, 100% { transform: rotate(-6deg) translateY(-2px); }
   50% { transform: rotate(-6deg) translateY(2px); }
