@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://taxi-maxi.vercel.app',
+  site: 'https://taxi-shiar.ch',
   vite: {
     plugins: [tailwindcss()]
   },
