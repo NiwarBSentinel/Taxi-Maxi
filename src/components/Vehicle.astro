@@ -1,0 +1,183 @@
+---
+import { Snowflake, Volume2, Maximize, ShieldCheck } from "@lucide/astro";
+
+const perks = [
+  { Icon: Snowflake, label: "Klimatisiert" },
+  { Icon: Volume2, label: "Flüsterleise" },
+  { Icon: Maximize, label: "Grosszügig & geräumig" },
+];
+---
+
+<section id="fahrzeug" class="relative py-24 md:py-32 bg-soft overflow-hidden">
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-white via-soft to-white pointer-events-none"
+  >
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="max-w-2xl mb-12 md:mb-16 reveal-up">
+      <p
+        class="inline-flex items-center gap-2 text-accent-dark text-sm font-semibold uppercase tracking-widest mb-4"
+      >
+        <span class="w-2 h-2 rounded-full bg-accent"></span>
+        Unser Fahrzeug
+      </p>
+      <h2
+        class="text-slate-900 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-5"
+      >
+        Reisen Sie in <span class="text-primary">Stil und Komfort.</span>
+      </h2>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        Sie fahren im vollausgestatteten BYD Seal U DM-i — modern, sicher und
+        nach jeder Schicht frisch gereinigt. Sehen Sie selbst.
+      </p>
+    </div>
+
+    <!-- Zwei Aussenaufnahmen -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8">
+      <figure
+        class="vehicle-card reveal-scale group relative rounded-3xl border border-slate-200/70 bg-gradient-to-br from-white to-slate-50 p-6 md:p-8 shadow-[0_20px_50px_-25px_rgba(11,42,91,0.35)] overflow-hidden"
+      >
+        <span
+          class="absolute top-5 left-5 z-20 inline-flex items-center gap-1.5 rounded-full bg-primary/5 text-primary text-xs font-semibold px-3 py-1.5"
+        >
+          <ShieldCheck size={13} strokeWidth={2.5} />
+          BYD Seal U DM-i
+        </span>
+        <div
+          class="relative flex items-center justify-center aspect-[16/10]"
+        >
+          <div
+            class="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <div
+              class="w-[85%] h-[60%] rounded-full bg-gradient-to-br from-accent-light/40 via-blue-100/30 to-transparent blur-3xl"
+            >
+            </div>
+          </div>
+          <div
+            class="absolute bottom-[10%] left-[12%] right-[12%] h-6 bg-slate-900/15 rounded-full blur-xl pointer-events-none"
+          >
+          </div>
+          <img
+            src="/images/fahrzeug-front.webp"
+            alt="BYD Seal U DM-i der Taxi Shiar Flotte — Frontansicht"
+            loading="lazy"
+            decoding="async"
+            width="1100"
+            height="720"
+            class="vehicle-img relative z-10 w-full h-full object-contain"
+          />
+        </div>
+        <figcaption
+          class="relative mt-2 text-sm font-medium text-slate-500"
+        >
+          Aussenansicht
+        </figcaption>
+      </figure>
+
+      <figure
+        class="vehicle-card reveal-scale group relative rounded-3xl border border-slate-200/70 bg-gradient-to-br from-white to-slate-50 p-6 md:p-8 shadow-[0_20px_50px_-25px_rgba(11,42,91,0.35)] overflow-hidden"
+        style="--reveal-delay: 120ms"
+      >
+        <span
+          class="absolute top-5 left-5 z-20 inline-flex items-center gap-1.5 rounded-full bg-primary/5 text-primary text-xs font-semibold px-3 py-1.5"
+        >
+          <ShieldCheck size={13} strokeWidth={2.5} />
+          BYD Seal U DM-i
+        </span>
+        <div
+          class="relative flex items-center justify-center aspect-[16/10]"
+        >
+          <div
+            class="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <div
+              class="w-[85%] h-[60%] rounded-full bg-gradient-to-br from-accent-light/40 via-blue-100/30 to-transparent blur-3xl"
+            >
+            </div>
+          </div>
+          <div
+            class="absolute bottom-[10%] left-[12%] right-[12%] h-6 bg-slate-900/15 rounded-full blur-xl pointer-events-none"
+          >
+          </div>
+          <img
+            src="/images/fahrzeug-seite.webp"
+            alt="BYD Seal U DM-i der Taxi Shiar Flotte — Seitenprofil"
+            loading="lazy"
+            decoding="async"
+            width="1100"
+            height="720"
+            class="vehicle-img relative z-10 w-full h-full object-contain"
+          />
+        </div>
+        <figcaption
+          class="relative mt-2 text-sm font-medium text-slate-500"
+        >
+          Seitenprofil
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- Interieur als breites Banner -->
+    <figure
+      class="reveal-up group relative rounded-3xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(11,42,91,0.5)]"
+    >
+      <img
+        src="/images/fahrzeug-interieur.webp"
+        alt="Premium-Interieur des BYD Seal U DM-i — Cockpit mit grossem Touchscreen"
+        loading="lazy"
+        decoding="async"
+        width="1800"
+        height="772"
+        class="vehicle-interior w-full h-auto object-cover aspect-[21/9]"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent pointer-events-none"
+      >
+      </div>
+      <figcaption
+        class="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10"
+      >
+        <p
+          class="text-accent text-xs sm:text-sm font-semibold uppercase tracking-widest mb-2"
+        >
+          Premium-Interieur
+        </p>
+        <h3
+          class="text-white text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight mb-5 max-w-xl"
+        >
+          Platz nehmen, zurücklehnen, ankommen.
+        </h3>
+        <ul class="flex flex-wrap gap-2.5 sm:gap-3">
+          {
+            perks.map(({ Icon, label }) => (
+              <li class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-3.5 py-2 text-sm font-medium text-white">
+                <Icon size={15} strokeWidth={2.25} class="text-accent" />
+                {label}
+              </li>
+            ))
+          }
+        </ul>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .vehicle-img {
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .vehicle-interior {
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .vehicle-card:hover .vehicle-img {
+      transform: scale(1.04);
+    }
+    .group:hover .vehicle-interior {
+      transform: scale(1.05);
+    }
+  }
+</style>
