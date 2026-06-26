@@ -188,8 +188,17 @@ import {
       function formatSuggestion(item) {
         const addr = item.address || {};
         const parts = [];
-        if (addr.road) {
-          parts.push(addr.road + (addr.house_number ? " " + addr.house_number : ""));
+        const name = item.name && item.name.trim();
+        const road = addr.road
+          ? addr.road + (addr.house_number ? " " + addr.house_number : "")
+          : "";
+        // Benannter Ort (Flughafen, Bahnhof, Hotel …) → Name zuerst,
+        // Strasse zur Eindeutigkeit anhängen, falls vorhanden und abweichend.
+        if (name) {
+          parts.push(name);
+          if (road && road !== name) parts.push(road);
+        } else if (road) {
+          parts.push(road);
         }
         const cityPart = [
           addr.postcode,
@@ -287,10 +296,13 @@ import {
         if (abortController) abortController.abort();
         abortController = new AbortController();
         try {
+          // viewbox umfasst grob den Raum Zürich/Winterthur und bevorzugt
+          // lokale Treffer, ohne Ergebnisse ausserhalb hart auszuschliessen.
           const url =
             "https://nominatim.openstreetmap.org/search?q=" +
             encodeURIComponent(query) +
-            "&format=json&limit=6&countrycodes=ch&addressdetails=1&accept-language=de-CH";
+            "&format=json&limit=6&countrycodes=ch&addressdetails=1&accept-language=de-CH" +
+            "&viewbox=8.35,47.70,8.98,47.20&bounded=0";
           const res = await fetch(url, {
             signal: abortController.signal,
             headers: { "Accept-Language": "de-CH" },
